@@ -4,7 +4,6 @@ class Solution {
     public int findTargetSumWays(int[] nums, int target) {
         n = nums.length;
         map = new HashMap<>();
-        //dp = new int[n][target]; 
         return solve(nums,target,0);
     }
     int solve(int[] nums, int tar,int i){
@@ -12,7 +11,7 @@ class Solution {
             if(tar == 0) return 1;
             return 0;
         }
-        String key = i+""+tar;
+        String key = i+"+"+tar;
         if(map.containsKey(key)) return map.get(key);
         int count = 0;
         count += solve(nums,tar+nums[i],i+1);
