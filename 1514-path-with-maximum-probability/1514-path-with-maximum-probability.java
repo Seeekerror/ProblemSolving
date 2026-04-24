@@ -22,7 +22,7 @@ class Solution {
             int u = (int)cur[0];
             double w = cur[1];
             if (u == end_node) return w;
-            if (w < dis[u]) continue;
+            //if (w < dis[u]) continue;
             for(double [] nei : adj.get(u)){
                 int v = (int)nei[0];
                 double nd = w*nei[1];
