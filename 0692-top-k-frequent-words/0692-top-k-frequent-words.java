@@ -5,15 +5,17 @@ class Solution {
         for (int i = 0; i < words.length; i++) {
             map.put(words[i], map.getOrDefault(words[i], 0) + 1);
         }
-        PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>((a, b) -> {
-            int cmp = Integer.compare(b.getValue(), a.getValue());
-            if (cmp != 0)
-                return cmp;
-            return a.getKey().compareTo(b.getKey());
+
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+
+        list.sort((a, b) -> {
+            int cmp = Integer.compare(b.getValue(), a.getValue()); // freq desc
+            if (cmp != 0) return cmp;
+            return a.getKey().compareTo(b.getKey()); // lexicographic
         });
-        pq.addAll(map.entrySet());
+        // pq.addAll(map.entrySet());
         for (int i = 0; i < k; i++) {
-            l.add(pq.poll().getKey());
+            l.add(list.get(i).getKey());
         }
         return l;
     }
