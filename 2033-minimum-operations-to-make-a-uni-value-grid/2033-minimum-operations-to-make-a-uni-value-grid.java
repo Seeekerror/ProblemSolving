@@ -9,9 +9,9 @@ class Solution {
             }
         }
         Arrays.sort(arr);
-        int base = arr[0];
-        for(int i=0; i<m*n; i++){
-            if((arr[i] - base) % x != 0) return -1;
+        int mod = arr[0] % x;
+        for (int val : arr) {
+            if (val % x != mod) return -1;
         }
         int num = arr[m*n/2];
         int count=0;
