@@ -15,8 +15,8 @@ class Solution {
         }
         int num = arr[m*n/2];
         int count=0;
-        for(int i = 0; i<arr.length; i++)
-            count += Math.abs(arr[i]-num)/x;
+        for(int val : arr)
+            count += Math.abs(val-num)/x;
         
         return count;
     }
