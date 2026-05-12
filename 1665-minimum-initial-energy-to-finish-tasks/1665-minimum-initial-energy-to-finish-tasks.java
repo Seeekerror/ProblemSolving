@@ -1,5 +1,8 @@
 class Solution {
     public int minimumEffort(int[][] tasks) {
+        Arrays.sort(tasks, (a, b) ->
+            (b[1] - b[0]) - (a[1] - a[0])
+        );
         int low=1;
         int high=(int)1e9;
         int ans=0;
@@ -15,9 +18,6 @@ class Solution {
         return ans;
     }
     boolean check(int [][] tasks, int mid){
-        Arrays.sort(tasks, (a, b) ->
-            (b[1] - b[0]) - (a[1] - a[0])
-        );
         for(int [] task : tasks){
             int act = task[0];
             int min = task[1];
