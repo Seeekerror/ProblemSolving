@@ -3,8 +3,13 @@ class Solution {
         Arrays.sort(tasks, (a, b) ->
             (b[1] - b[0]) - (a[1] - a[0])
         );
-        int low=1;
-        int high=(int)1e9;
+        int low=0;
+        int high=0;
+        for(int [] task : tasks){
+            int min = task[1];
+            low = Math.max(low,min);
+            high += min;
+        }
         int ans=0;
         while(low <= high){
             int mid = low + (high-low)/2;
