@@ -24,15 +24,8 @@ class Solution {
             TreeNode next=list.get(i+1);
             first.left=null;
             first.right=next;
-            first=next;
-            if(i==size-1){
-                first.left=null;
-                first.right=null;
-            }
+            //first=next;
         }
-        
-
-        
     }
     void dfs(TreeNode root){
         if(root == null)return;
