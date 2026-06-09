@@ -6,6 +6,10 @@ class Solution {
             max = Math.max(x,max);
             min = Math.min(x,min);
         }
-        return (long)(max-min)*k;
+        long ans=0;
+        for(int i=0;i<k;i++){
+            ans += (max-min);
+        }
+        return ans;
     }
 }
