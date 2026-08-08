@@ -1,46 +1,24 @@
 class Solution {
-    public int findCircleNum(int[][] isConnected) {
-        int n = isConnected.length;
-        
-        int[] par = new int[n];
-        int[] rank = new int[n];
+    public int findCircleNum(int[][] grid) {
+        boolean[] vis = new boolean[grid.length];
+        int c = 0;
+        for (int i = 0; i < grid.length; i++) {
+            if (!vis[i]) {
+                dfs(grid, i, vis);
+                c++;
+            }
 
-        for(int i = 0; i < n; i++){
-            par[i] = i;
         }
+        return c;
+    }
 
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                if(isConnected[i][j] == 1){
-                    Union(i, j, par, rank);
-                }
+    void dfs(int[][] grid, int i, boolean[] vis) {
+        if(vis[i]) return;
+        vis[i] = true;
+        for (int j = 0; j < grid.length; j++) {
+            if (!vis[j] && grid[i][j] == 1) {
+                dfs(grid, j, vis);
             }
         }
-
-        int provinces = 0;
-        for(int i = 0; i < n; i++){
-            if(par[i] == i) provinces++;
-        }
-
-        return provinces;
-    }
-    void Union(int u, int v, int [] par, int [] rank){
-        int ul_pu = find(u,par);
-        int ul_pv = find(v,par);
-        if(ul_pu == ul_pv) return;
-        if(rank[ul_pu] > rank[ul_pv]){
-            par[ul_pv] = ul_pu;
-        }else if(rank[ul_pu] < rank[ul_pv]){
-            par[ul_pu] = ul_pv;
-        }
-        else{
-            par[ul_pv] = ul_pu;
-            rank[ul_pu]++;
-        }
-    }
-    int find(int x, int [] par){
-
-        if(par[x] == x) return x;
-        return par[x] = find(par[x],par);
     }
 }
