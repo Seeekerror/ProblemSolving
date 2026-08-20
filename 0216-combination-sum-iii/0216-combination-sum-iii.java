@@ -1,25 +1,26 @@
 class Solution {
-    List<List<Integer>> l;
-
+    List<List<Integer>> l = new ArrayList<>();
+    List<Integer> ls = new ArrayList<>();
     public List<List<Integer>> combinationSum3(int k, int n) {
-        l = new ArrayList<>();
-        List<Integer> ls = new ArrayList<>();
-        backtrack(k, n, ls, 1);
+        int [] ar = new int[9];
+        for(int i=1;i<=9;i++){
+            ar[i-1] = i;
+        }
+        solve(ar,k,0,n);
         return l;
     }
-
-    void backtrack(int k, int n, List<Integer> ls, int i) {
-        if (i > 9) {
-            if (ls.size() == k) {
-                if (n == 0) {
-                    l.add(new ArrayList<>(ls));
-                }
-            }
+    void solve(int [] ar , int k , int i, int n){
+        if(n == 0){
+            if(ls.size() == k)
+            l.add(new ArrayList<>(ls));
             return;
         }
-        ls.add(i);
-        backtrack(k, n - i, ls, i + 1);
-        ls.remove(ls.size() - 1);
-        backtrack(k, n, ls, i + 1);
+        if(i >= ar.length) return;
+        ls.add(ar[i]);
+        if(ar[i] <= n){
+            solve(ar,k,i+1,n-ar[i]);
+        }
+        ls.remove(ls.size()-1);
+        solve(ar,k,i+1,n);
     }
 }
