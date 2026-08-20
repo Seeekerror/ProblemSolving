@@ -1,18 +1,18 @@
 class Solution {
+    List<List<Integer>> l = new ArrayList<>();
+    List<Integer> ls = new ArrayList<>();
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> l = new ArrayList<>();
-        List<Integer> ls = new ArrayList<>();
-        back(nums,l,ls,0);
+        solve(nums,0);
         return l;
     }
-    void back(int [] nums, List<List<Integer>> l, List<Integer> ls, int i){
-        if(i == nums.length){
+    void solve(int [] arr , int i){
+        if(!l.contains(ls)){
             l.add(new ArrayList<>(ls));
-            return;
         }
-        ls.add(nums[i]);
-        back(nums,l,ls,i+1);
+        if(i >= arr.length) return;
+        ls.add(arr[i]);
+        solve(arr,i+1);
         ls.remove(ls.size()-1);
-        back(nums,l,ls,i+1);
+        solve(arr,i+1);
     }
 }
