@@ -24,8 +24,8 @@ class Solution {
             for (int j = i; j < s.length(); j++) {
                 if (s.charAt(j) == '1')
                     z++;
-                if (z > k)
-                    break;
+                // if (z > k)
+                //     break;
                 if (z == k && j - i + 1 == len) {
                     ls.add(s.substring(i, j + 1));
                 }
