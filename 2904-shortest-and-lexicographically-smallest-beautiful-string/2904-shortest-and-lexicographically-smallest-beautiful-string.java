@@ -4,7 +4,8 @@ class Solution {
         int l = 0;
         int r = 0;
         int x = 0;
-        int len = Integer.MAX_VALUE;
+        //int len = Integer.MAX_VALUE;
+        String ans = "";
         while (r < s.length()) {
             if (s.charAt(r) == '1')
                 x++;
@@ -14,26 +15,32 @@ class Solution {
                 l++;
             }
             if (x == k) {
-                while(s.charAt(l) == '0') l++;
-                len = Math.min(len, r - l + 1);
+                while (s.charAt(l) == '0')
+                    l++;
+                //len = Math.min(len, r - l + 1);
+                String cur = s.substring(l, r + 1);
+                if (ans == "" || cur.length() < ans.length()
+                        || (cur.length() == ans.length() && cur.compareTo(ans) < 0))
+                    ans = cur;
             }
             r++;
         }
-        for (int i = 0; i < s.length(); i++) {
-            int z = 0;
-            for (int j = i; j < s.length(); j++) {
-                if (s.charAt(j) == '1')
-                    z++;
-                // if (z > k)
-                //     break;
-                if (z == k && j - i + 1 == len) {
-                    ls.add(s.substring(i, j + 1));
-                }
-            }
-        }
-        Collections.sort(ls);
-        if (ls.size() == 0)
-            return "";
-        return ls.get(0);
+        return ans;
+        // for (int i = 0; i < s.length(); i++) {
+        //     int z = 0;
+        //     for (int j = i; j < s.length(); j++) {
+        //         if (s.charAt(j) == '1')
+        //             z++;
+        //         // if (z > k)
+        //         //     break;
+        //         if (z == k && j - i + 1 == len) {
+        //             ls.add(s.substring(i, j + 1));
+        //         }
+        //     }
+        // }
+        // Collections.sort(ls);
+        // if (ls.size() == 0)
+        //     return "";
+        // return ls.get(0);
     }
 }
