@@ -2,24 +2,19 @@ class Solution {
     List<String> l = new ArrayList<>();
 
     public List<String> generateParenthesis(int n) {
-        StringBuilder sb = new StringBuilder();
-        solve(n, sb);
+        solve(n, "");
         return l;
     }
 
-    void solve(int n, StringBuilder sb) {
-        if (sb.length() == n * 2) {
-            if (isPar(sb.toString())) {
-                l.add(sb.toString());
+    void solve(int n, String s) {
+        if (s.length() == n * 2) {
+            if (isPar(s)) {
+                l.add(s);
             }
             return;
         }
-        sb.append('(');
-        solve(n, sb);
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append(')');
-        solve(n, sb);
-        sb.deleteCharAt(sb.length() - 1);
+        solve(n, s+'(');
+        solve(n, s+')');
     }
 
     boolean isPar(String s) {
