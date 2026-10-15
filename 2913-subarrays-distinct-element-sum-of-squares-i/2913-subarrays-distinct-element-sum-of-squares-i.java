@@ -2,12 +2,10 @@ class Solution {
     public int sumCounts(List<Integer> nums) {
         int ans = 0;
         for (int i = 0; i < nums.size(); i++) {
+            HashSet<Integer> set = new HashSet<>();
             for (int j = i; j < nums.size(); j++) {
-                HashSet<Integer> set = new HashSet<>();
-                for(int k = i; k <= j; k++){
-                    set.add(nums.get(k));
-                }
-                ans += set.size()*set.size();
+                set.add(nums.get(j));
+                ans += set.size() * set.size();
             }
         }
         return ans;
